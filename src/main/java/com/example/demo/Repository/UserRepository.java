@@ -9,7 +9,6 @@ import java.util.List;
 
 
 public interface UserRepository extends MongoRepository<User, String> {
-    User findByName(String name);
     @Query("{'name' : ?0}")
     public User findBy(String param1);
 

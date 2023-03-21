@@ -1,0 +1,14 @@
+version: "3"
+services:
+  Flight_test:
+    image: mongo:latest
+    container_name: "Flight_test"
+    ports:
+      - 27017:27017
+  spingboot-mongodb:
+    image: spingboot-mongodb:1.0
+    container_name: spingboot-mongodb
+    ports:
+      - 8080:8080
+    links:
+      - Flight_test
