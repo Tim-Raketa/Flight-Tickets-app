@@ -4,20 +4,21 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 @Document("flights")
 public class Flight {
     @Id
     private Integer Id;
-    private Date Begin;
-    private Date End;
+    private LocalDate Begin;
+    private LocalDate  End;
     private String StartingPlace;
     private String Destination;
     private Integer MaxSeats;
     private Integer TakenSeats;
     private float SeatPrice;
 
-    public Flight(Integer id, Date begin, Date end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
+    public Flight(Integer id, LocalDate  begin, LocalDate  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
         Id = id;
         Begin = begin;
         End = end;
@@ -36,19 +37,19 @@ public class Flight {
         Id = id;
     }
 
-    public Date getBegin() {
+    public LocalDate  getBegin() {
         return Begin;
     }
 
-    public void setBegin(Date begin) {
+    public void setBegin(LocalDate  begin) {
         Begin = begin;
     }
 
-    public Date getEnd() {
+    public LocalDate  getEnd() {
         return End;
     }
 
-    public void setEnd(Date end) {
+    public void setEnd(LocalDate  end) {
         End = end;
     }
 
