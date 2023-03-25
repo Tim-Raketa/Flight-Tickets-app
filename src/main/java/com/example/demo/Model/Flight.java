@@ -3,93 +3,106 @@ package com.example.demo.Model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.sql.Date;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Document("flights")
 public class Flight {
     @Id
-    private Integer Id;
-    private LocalDate Begin;
-    private LocalDate  End;
-    private String StartingPlace;
-    private String Destination;
-    private Integer MaxSeats;
-    private Integer TakenSeats;
-    private float SeatPrice;
+    private Integer id;
+    private LocalDateTime begin;
+    private LocalDateTime end;
+    private String startingPlace;
+    private String destination;
+    private Integer maxSeats;
+    private Integer takenSeats;
+    private float seatPrice;
 
-    public Flight(Integer id, LocalDate  begin, LocalDate  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
-        Id = id;
-        Begin = begin;
-        End = end;
-        StartingPlace = startingPlace;
-        Destination = destination;
-        MaxSeats = maxSeats;
-        SeatPrice = seatPrice;
-        TakenSeats=0;
+    public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
+        this.id = _id;
+        this.begin = Begin;
+        this.end = end;
+        this.startingPlace = startingPlace;
+        this.destination = destination;
+        this.maxSeats = maxSeats;
+        this.seatPrice = seatPrice;
+        this.takenSeats =0;
+    }
+    public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice, Integer takenSeats) {
+        this.id = _id;
+        this.begin = Begin;
+        this.end = end;
+        this.startingPlace = startingPlace;
+        this.destination = destination;
+        this.maxSeats = maxSeats;
+        this.seatPrice = seatPrice;
+        this.takenSeats =takenSeats;
+    }
+
+    public Flight() {
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
-    public void setId(Integer id) {
-        Id = id;
+    public void setId(Integer Id) {
+        this.id = Id;
     }
 
-    public LocalDate  getBegin() {
-        return Begin;
+    public LocalDateTime  getBegin() {
+        return begin;
     }
 
-    public void setBegin(LocalDate  begin) {
-        Begin = begin;
+    public void setBegin(LocalDateTime  begin) {
+        this.begin = begin;
     }
 
-    public LocalDate  getEnd() {
-        return End;
+    public LocalDateTime  getEnd() {
+        return end;
     }
 
-    public void setEnd(LocalDate  end) {
-        End = end;
+    public void setEnd(LocalDateTime  end) {
+        this.end = end;
     }
 
     public String getStartingPlace() {
-        return StartingPlace;
+        return startingPlace;
     }
 
     public void setStartingPlace(String startingPlace) {
-        StartingPlace = startingPlace;
+        this.startingPlace = startingPlace;
     }
 
     public String getDestination() {
-        return Destination;
+        return destination;
     }
 
     public void setDestination(String destination) {
-        Destination = destination;
+        this.destination = destination;
     }
 
     public Integer getMaxSeats() {
-        return MaxSeats;
+        return maxSeats;
     }
 
     public void setMaxSeats(Integer maxSeats) {
-        MaxSeats = maxSeats;
+        this.maxSeats = maxSeats;
     }
 
     public Integer getTakenSeats() {
-        return TakenSeats;
+        return takenSeats;
     }
 
     public void setTakenSeats(Integer takenSeats) {
-        TakenSeats = takenSeats;
+        this.takenSeats = takenSeats;
     }
 
     public float getSeatPrice() {
-        return SeatPrice;
+        return seatPrice;
     }
 
     public void setSeatPrice(float seatPrice) {
-        SeatPrice = seatPrice;
+        this.seatPrice = seatPrice;
     }
 }
