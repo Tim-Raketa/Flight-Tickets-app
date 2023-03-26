@@ -2,7 +2,7 @@ package com.example.demo.Model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
-
+//Flight_test
 @Document("users")
 public class User {
     @Id

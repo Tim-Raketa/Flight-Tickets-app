@@ -1,7 +1,5 @@
 package com.example.demo.Controllers;
-
 import com.example.demo.Model.User;
-import com.example.demo.Repository.UserRepository;
 import com.example.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -13,15 +11,15 @@ import java.util.List;
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin
 public class UserController {
-
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = "/getAllUsers")
+    @GetMapping("/getAll")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
-    @PostMapping(value = "/registerUser")
+
+    @PostMapping("/register")
     public User registerUser(@RequestBody User newUser){
         return userService.registerUser(newUser);
     }
