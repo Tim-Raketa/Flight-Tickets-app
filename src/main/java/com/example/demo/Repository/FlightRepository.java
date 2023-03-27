@@ -8,6 +8,6 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FlightRepository extends MongoRepository<Flight, Integer> {
-    List<Flight> findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndTakenSeatsLessThan
+    List<Flight> findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndFreeSeatsLessThan
             (LocalDateTime date1,LocalDateTime date2,String dest, String start, Integer seats);
 }

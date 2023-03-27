@@ -19,14 +19,14 @@ public class Flight {
     private String destination;
     private Integer maxSeats;
     //promeni u free
-    private Integer takenSeats;
+    private Integer freeSeats;
     private Float seatPrice;
 
     public Float getTotalPrice(Integer numberOfPeople){
         return seatPrice*numberOfPeople;
     }
     public Integer getTakenSeat( ){
-        return maxSeats-takenSeats;
+        return maxSeats-freeSeats;
     }
 
     public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
@@ -37,9 +37,9 @@ public class Flight {
         this.destination = destination;
         this.maxSeats = maxSeats;
         this.seatPrice = seatPrice;
-        this.takenSeats =0;
+        this.freeSeats =0;
     }
-    public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice, Integer takenSeats) {
+    public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice, Integer freeSeats) {
         this.id = _id;
         this.begin = Begin;
         this.end = end;
@@ -47,7 +47,7 @@ public class Flight {
         this.destination = destination;
         this.maxSeats = maxSeats;
         this.seatPrice = seatPrice;
-        this.takenSeats =takenSeats;
+        this.freeSeats =freeSeats;
     }
 
     public Flight() {
@@ -101,12 +101,12 @@ public class Flight {
         this.maxSeats = maxSeats;
     }
 
-    public Integer getTakenSeats() {
-        return takenSeats;
+    public Integer getFreeSeats() {
+        return freeSeats;
     }
 
-    public void setTakenSeats(Integer takenSeats) {
-        this.takenSeats = takenSeats;
+    public void setFreeSeats(Integer freeSeats) {
+        this.freeSeats = freeSeats;
     }
 
     public float getSeatPrice() {
