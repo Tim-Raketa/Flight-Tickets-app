@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -20,7 +21,12 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User newUser){
+    public User registerUser(@RequestBody User newUser) throws Exception {
+        String tempEmail = newUser.getEmail();
+        Optional<User> user = userService.getUserByEmail(tempEmail);
+        if (!user.isEmpty()) {
+            throw new Exception("User with " + tempEmail + " already exists!");
+        }
         return userService.registerUser(newUser);
     }
 
