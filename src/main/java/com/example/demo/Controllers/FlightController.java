@@ -1,5 +1,6 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.DTO.FlightDTO;
 import com.example.demo.DTO.FlightSearchDTO;
 import com.example.demo.Model.Flight;
 import com.example.demo.Service.FlightService;
@@ -19,7 +20,7 @@ public class FlightController {
         return flightService.GetAll();
     }
     @PostMapping(value="/search",consumes = "application/json")
-    public List<Flight> search(@RequestBody FlightSearchDTO details){
+    public List<FlightDTO> search(@RequestBody FlightSearchDTO details){
         return flightService.Search(details);
     }
 

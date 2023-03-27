@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import com.example.demo.DTO.FlightDTO;
 import com.example.demo.DTO.FlightSearchDTO;
 import com.example.demo.Model.Flight;
 import com.example.demo.Repository.FlightRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,10 +24,18 @@ public class FlightService {
     public List<Flight> GetAll(){
         return flightRepository.findAll();
     }
-    public List<Flight> Search(FlightSearchDTO details){
+    public List<FlightDTO> Search(FlightSearchDTO details){
         LocalDateTime dateTime = details.getDate().atStartOfDay();
 
-        return flightRepository.findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndTakenSeatsLessThan
+       List<Flight>flights= flightRepository.findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndFreeSeatsLessThan
                 (dateTime,dateTime.plusDays(1),details.getDestination(),details.getStartingLocation(),details.getNumberOfPeople() );
+        return flightToDTO(flights,details.getNumberOfPeople());
+    }
+    public List<FlightDTO> flightToDTO(List<Flight> flights, Integer numberOfPeople){
+        List<FlightDTO> flightsDTO=new ArrayList<>();
+        for (Flight flight :flights) {
+            flightsDTO.add(new FlightDTO(flight,numberOfPeople));
+        }
+        return flightsDTO;
     }
 }
