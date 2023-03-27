@@ -17,12 +17,8 @@ public class PoroController {
     private UserRepository repository;
     @GetMapping("/addBook")
     public ResponseEntity<String> AddBook() {
-        User user = new User("moc", "moc1");
-        User user2 = new User("moc2", "dsa");
-
+        User user = new User("moc", "123","Bo", "Moc", "1231231231233");
         repository.save(user);
-        repository.save(user2);
-
         return new ResponseEntity<String>("Ok",HttpStatus.OK);
     }
     @GetMapping(value="/")

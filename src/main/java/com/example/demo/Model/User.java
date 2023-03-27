@@ -2,16 +2,38 @@ package com.example.demo.Model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
-
+//Flight_test
 @Document("users")
 public class User {
     @Id
-    private String id;
+    private String email;
+    private String password;
     private String name;
+    private String surname;
+    private String jmbg;
 
-    public User(String id, String name) {
-        this.id = id;
+    public User(String email, String password, String name, String surname, String jmbg) {
+        this.email = email;
+        this.password = password;
         this.name = name;
+        this.surname = surname;
+        this.jmbg = jmbg;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
@@ -22,11 +44,19 @@ public class User {
         this.name = name;
     }
 
-    public String getId() {
-        return id;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getJmbg() {
+        return jmbg;
+    }
+
+    public void setJmbg(String jmbg) {
+        this.jmbg = jmbg;
     }
 }
