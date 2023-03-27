@@ -1,10 +1,13 @@
 package com.example.demo.Model;
 
+import com.example.demo.DTO.FlightDTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Document("flights")
 public class Flight {
@@ -15,10 +18,17 @@ public class Flight {
     private String startingPlace;
     private String destination;
     private Integer maxSeats;
+    //promeni u free
     private Integer takenSeats;
     private Float seatPrice;
 
-    public Float PricePerPerson
+    public Float getTotalPrice(Integer numberOfPeople){
+        return seatPrice*numberOfPeople;
+    }
+    public Integer getTakenSeat( ){
+        return maxSeats-takenSeats;
+    }
+
     public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
         this.id = _id;
         this.begin = Begin;
