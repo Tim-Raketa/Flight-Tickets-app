@@ -16,8 +16,9 @@ public class Flight {
     private String destination;
     private Integer maxSeats;
     private Integer takenSeats;
-    private float seatPrice;
+    private Float seatPrice;
 
+    public Float PricePerPerson
     public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
         this.id = _id;
         this.begin = Begin;
