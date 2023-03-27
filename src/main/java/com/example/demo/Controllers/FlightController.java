@@ -1,12 +1,11 @@
 package com.example.demo.Controllers;
 
+import com.example.demo.DTO.FlightSearchDTO;
 import com.example.demo.Model.Flight;
 import com.example.demo.Service.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,9 +18,9 @@ public class FlightController {
     public List<Flight> GetAll(){
         return flightService.GetAll();
     }
-    @GetMapping(value="/search")
-    public List<Flight> search(){
-        return flightService.Search();
+    @PostMapping(value="/search",consumes = "application/json")
+    public List<Flight> search(@RequestBody FlightSearchDTO details){
+        return flightService.Search(details);
     }
 
 }
