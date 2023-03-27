@@ -21,13 +21,15 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public User registerUser(@RequestBody User newUser) throws Exception {
+    public Boolean registerUser(@RequestBody User newUser) throws Exception {
+        Boolean created = false;
         String tempEmail = newUser.getEmail();
         Optional<User> user = userService.getUserByEmail(tempEmail);
-        if (!user.isEmpty()) {
-            throw new Exception("User with " + tempEmail + " already exists!");
+        if (user.isEmpty()) {
+            userService.registerUser(newUser);
+            created = true;
         }
-        return userService.registerUser(newUser);
+        return created;
     }
 
 }
