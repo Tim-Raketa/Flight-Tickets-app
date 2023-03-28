@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FlightService {
@@ -24,6 +25,19 @@ public class FlightService {
     public List<Flight> GetAll(){
         return flightRepository.findAll();
     }
+
+    public Optional<Flight> findById(Integer id){
+        return flightRepository.findById(id);
+    }
+
+    public Flight createFlight(Flight newFlight){
+        return flightRepository.save(newFlight);
+    }
+
+    public void deleteFlight(Integer id){
+        flightRepository.deleteById(id);
+    }
+
     public List<FlightDTO> Search(FlightSearchDTO details){
         LocalDateTime dateTime = details.getDate().atStartOfDay();
 
