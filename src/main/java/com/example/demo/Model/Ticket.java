@@ -6,47 +6,47 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Document("tickets")
 public class Ticket {
     @Id
-    private Integer Id;
-    private Flight Flight;
-    private User User;
-    private Integer NumberOfSeats;
+    private Integer id;
+    private Flight flight;
+    private User user;
+    private Integer numberOfSeats;
 
     public Ticket(Integer id, com.example.demo.Model.Flight flight, com.example.demo.Model.User user, Integer numberOfSeats) {
-        Id = id;
-        Flight = flight;
-        User = user;
-        NumberOfSeats = numberOfSeats;
+        this.id = id;
+        this.flight = flight;
+        this.user = user;
+        this.numberOfSeats = numberOfSeats;
     }
 
     public Integer getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Integer id) {
-        Id = id;
+        this.id = id;
     }
 
     public com.example.demo.Model.Flight getFlight() {
-        return Flight;
+        return flight;
     }
 
     public void setFlight(com.example.demo.Model.Flight flight) {
-        Flight = flight;
+        this.flight = flight;
     }
 
     public com.example.demo.Model.User getUser() {
-        return User;
+        return user;
     }
 
     public void setUser(com.example.demo.Model.User user) {
-        User = user;
+        this.user = user;
     }
 
     public Integer getNumberOfSeats() {
-        return NumberOfSeats;
+        return numberOfSeats;
     }
 
     public void setNumberOfSeats(Integer numberOfSeats) {
-        NumberOfSeats = numberOfSeats;
+        this.numberOfSeats = numberOfSeats;
     }
 }
