@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FlightDTO {
+    private Integer id;
     private LocalDateTime dateTime;
     private String startingLocation;
     private String destination;
@@ -14,7 +15,8 @@ public class FlightDTO {
     private Float totalPrice;
     public FlightDTO() {
     }
-    public FlightDTO(LocalDateTime dateTime, String startingLocation, String destination, Float pricePerPerson, Float totalPrice) {
+    public FlightDTO(Integer id,LocalDateTime dateTime, String startingLocation, String destination, Float pricePerPerson, Float totalPrice) {
+        this.id=id;
         this.dateTime = dateTime;
         this.startingLocation = startingLocation;
         this.destination = destination;
@@ -22,11 +24,20 @@ public class FlightDTO {
         this.totalPrice = totalPrice;
     }
     public FlightDTO(Flight flight,Integer numberOfPeople) {
+        this.id=flight.getId();
         this.dateTime = flight.getBegin();
         this.startingLocation=flight.getStartingPlace();
         this.destination=flight.getDestination();
         this.pricePerPerson=flight.getSeatPrice();
         this.totalPrice=flight.getTotalPrice(numberOfPeople);
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public LocalDateTime getDateTime() {
