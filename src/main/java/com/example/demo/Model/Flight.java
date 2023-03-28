@@ -18,7 +18,6 @@ public class Flight {
     private String startingPlace;
     private String destination;
     private Integer maxSeats;
-    //promeni u free
     private Integer freeSeats;
     private Float seatPrice;
 
