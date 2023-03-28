@@ -2,6 +2,7 @@ package com.example.demo.Model;
 
 import com.example.demo.DTO.FlightDTO;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -11,6 +12,10 @@ import java.util.List;
 
 @Document("flights")
 public class Flight {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "flight_sequence";
+
     @Id
     private Integer id;
     private LocalDateTime begin;
