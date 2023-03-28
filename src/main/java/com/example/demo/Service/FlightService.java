@@ -2,7 +2,9 @@ package com.example.demo.Service;
 
 import com.example.demo.DTO.FlightDTO;
 import com.example.demo.DTO.FlightSearchDTO;
+import com.example.demo.DTO.NewTicketDTO;
 import com.example.demo.Model.Flight;
+import com.example.demo.Model.Ticket;
 import com.example.demo.Repository.FlightRepository;
 import com.example.demo.Repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,11 +47,17 @@ public class FlightService {
                 (dateTime,dateTime.plusDays(1),details.getDestination(),details.getStartingLocation(),details.getNumberOfPeople() );
         return flightToDTO(flights,details.getNumberOfPeople());
     }
-    public List<FlightDTO> flightToDTO(List<Flight> flights, Integer numberOfPeople){
-        List<FlightDTO> flightsDTO=new ArrayList<>();
-        for (Flight flight :flights) {
-            flightsDTO.add(new FlightDTO(flight,numberOfPeople));
+    public List<FlightDTO> flightToDTO(List<Flight> flights, Integer numberOfPeople) {
+        List<FlightDTO> flightsDTO = new ArrayList<>();
+        for (Flight flight : flights) {
+            flightsDTO.add(new FlightDTO(flight, numberOfPeople));
         }
         return flightsDTO;
+    }
+    public Ticket CreateTicket(NewTicketDTO ticket){
+        Optional<Flight> flight=flightRepository.findById(ticket.getFlightId());
+        if(flight.isPresent())
+            return ticketRepository.save(new Ticket(1,flight.get(),null,1));
+        return null;
     }
 }
