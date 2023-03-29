@@ -25,13 +25,10 @@ public class PoroController {
     private FlightRepository flightRepository;
     @GetMapping("/addBook")
     public ResponseEntity<String> AddBook() {
-        User user = new User("moc", "123","Bo", "Moc", "1231231231233");
-        repository.save(user);
 
         Flight flight1=new Flight(1, LocalDateTime.now(),LocalDateTime.now().plusDays(2), "Belgrade","Split",100,6000);
         Flight flight2=new Flight(2, LocalDateTime.now(),LocalDateTime.now().plusDays(2), "Belgrade","Split",100,6000);
 
-        repository.save(user);
         flightRepository.save(flight1);
         flightRepository.save(flight2);
 

@@ -6,27 +6,22 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
+import java.util.List;
 
 //Flight_test
 @Document("users")
 public class User implements UserDetails {
     @Id
     private String email;
+    private String username;
     private String password;
     private String name;
     private String surname;
     private String jmbg;
+    private String role;
 
-    //Potrebno kao u postgress join table pa da bude
-    // private List<Role> roles;
-
-    public User(String email, String password, String name, String surname, String jmbg) {
-        this.email = email;
-        this.password = password;
-        this.name = name;
-        this.surname = surname;
-        this.jmbg = jmbg;
-    }
+    public User() { }
 
     public String getEmail() {
         return email;
@@ -34,6 +29,10 @@ public class User implements UserDetails {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
@@ -47,27 +46,27 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return null;
+        return username;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
     }
 
     public void setPassword(String password) {
@@ -96,5 +95,17 @@ public class User implements UserDetails {
 
     public void setJmbg(String jmbg) {
         this.jmbg = jmbg;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Date getLastPasswordResetDate() {
+        return null;
     }
 }

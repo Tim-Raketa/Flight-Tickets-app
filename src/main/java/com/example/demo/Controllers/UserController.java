@@ -1,4 +1,5 @@
 package com.example.demo.Controllers;
+import com.example.demo.DTO.UserRequest;
 import com.example.demo.Model.User;
 import com.example.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public Boolean registerUser(@RequestBody User newUser) throws Exception {
+    public Boolean registerUser(@RequestBody UserRequest newUser) throws Exception {
         Boolean created = false;
         String tempEmail = newUser.getEmail();
         Optional<User> user = userService.getUserByEmail(tempEmail);

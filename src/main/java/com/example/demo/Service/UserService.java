@@ -1,5 +1,7 @@
 package com.example.demo.Service;
 
+import com.example.demo.DTO.UserRequest;
+import com.example.demo.Model.Role;
 import com.example.demo.Model.User;
 import com.example.demo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,17 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User registerUser(UserRequest newUser){
+    public User registerUser(UserRequest userRequest){
+        User newUser = new User();
+
+        newUser.setEmail(userRequest.getEmail());
+        newUser.setUsername(userRequest.getEmail());
+        newUser.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        newUser.setName(userRequest.getName());
+        newUser.setSurname(userRequest.getSurname());
+
+        // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
+        newUser.setRole("ROLE_USER");
 
         return userRepository.save(newUser);
     }

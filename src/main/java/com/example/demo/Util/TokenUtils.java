@@ -1,5 +1,6 @@
 package com.example.demo.Util;
 
+import com.example.demo.Model.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
