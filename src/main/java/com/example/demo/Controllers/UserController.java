@@ -1,6 +1,8 @@
 package com.example.demo.Controllers;
 import com.example.demo.DTO.UserRequest;
+import com.example.demo.Model.Role;
 import com.example.demo.Model.User;
+import com.example.demo.Repository.RoleRepository;
 import com.example.demo.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -15,6 +17,9 @@ import java.util.Optional;
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private RoleRepository roleRepository;
 
     @GetMapping("/getAll")
     public List<User> getAllUsers(){
@@ -32,5 +37,14 @@ public class UserController {
         }
         return created;
     }
+
+    @PostMapping("/createRole")
+    public Boolean createRole(@RequestBody Role role) throws Exception {
+        roleRepository.save(role);
+
+        return true;
+    }
+
+
 
 }
