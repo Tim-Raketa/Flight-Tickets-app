@@ -1,31 +1,25 @@
 package com.example.demo.DTO;
 
 import com.example.demo.Model.Flight;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
+@AllArgsConstructor
+@NoArgsConstructor
 public class FlightDTO {
     private Integer id;
-    private LocalDateTime dateTime;
+    private String dateTime;
     private String startingLocation;
     private String destination;
     private Float pricePerPerson;
     private Float totalPrice;
-    public FlightDTO() {
-    }
-    public FlightDTO(Integer id,LocalDateTime dateTime, String startingLocation, String destination, Float pricePerPerson, Float totalPrice) {
-        this.id=id;
-        this.dateTime = dateTime;
-        this.startingLocation = startingLocation;
-        this.destination = destination;
-        this.pricePerPerson = pricePerPerson;
-        this.totalPrice = totalPrice;
-    }
+
     public FlightDTO(Flight flight,Integer numberOfPeople) {
         this.id=flight.getId();
-        this.dateTime = flight.getBegin();
+        this.dateTime = flight.getBegin().toString();
         this.startingLocation=flight.getStartingPlace();
         this.destination=flight.getDestination();
         this.pricePerPerson=flight.getSeatPrice();
@@ -40,12 +34,12 @@ public class FlightDTO {
         this.id = id;
     }
 
-    public LocalDateTime getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
     public void setDateTime(LocalDateTime dateTime) {
-        this.dateTime = dateTime;
+        this.dateTime = dateTime.toString();
     }
 
     public String getStartingLocation() {
