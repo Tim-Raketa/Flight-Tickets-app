@@ -13,7 +13,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
-@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;
