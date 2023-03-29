@@ -2,6 +2,7 @@ package com.example.demo.Controllers;
 
 import com.example.demo.DTO.FlightDTO;
 import com.example.demo.DTO.FlightSearchDTO;
+import com.example.demo.DTO.FlightShowDTO;
 import com.example.demo.DTO.NewTicketDTO;
 import com.example.demo.Model.Flight;
 import com.example.demo.Model.Ticket;
@@ -26,8 +27,8 @@ public class FlightController {
     private SequenceGeneratorService sequenceGeneratorService;
 
     @GetMapping(value="/getAll")
-    public ResponseEntity<List<Flight>> GetAll(){
-        return new ResponseEntity<List<Flight>>(flightService.GetAll(), HttpStatus.OK);
+    public ResponseEntity<List<FlightShowDTO>> GetAll(){
+        return new ResponseEntity<List<FlightShowDTO>>(flightService.GetAll(), HttpStatus.OK);
     }
     @PostMapping(value="/search",consumes = "application/json")
     public List<FlightDTO> search(@RequestBody FlightSearchDTO details){

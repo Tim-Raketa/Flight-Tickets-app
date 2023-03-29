@@ -2,6 +2,7 @@ package com.example.demo.Service;
 
 import com.example.demo.DTO.FlightDTO;
 import com.example.demo.DTO.FlightSearchDTO;
+import com.example.demo.DTO.FlightShowDTO;
 import com.example.demo.DTO.NewTicketDTO;
 import com.example.demo.Model.Flight;
 import com.example.demo.Model.Ticket;
@@ -22,8 +23,8 @@ public class FlightService {
     @Autowired
     private FlightRepository flightRepository;
 
-    public List<Flight> GetAll(){
-        return flightRepository.findAll();
+    public List<FlightShowDTO> GetAll(){
+        return convertForShowAll(flightRepository.findAll());
     }
 
     public Optional<Flight> findById(Integer id){
@@ -49,6 +50,13 @@ public class FlightService {
         List<FlightDTO> flightsDTO = new ArrayList<>();
         for (Flight flight : flights) {
             flightsDTO.add(new FlightDTO(flight, numberOfPeople));
+        }
+        return flightsDTO;
+    }
+    public List<FlightShowDTO> convertForShowAll(List<Flight> flights) {
+        List<FlightShowDTO> flightsDTO = new ArrayList<>();
+        for (Flight flight : flights) {
+            flightsDTO.add(new FlightShowDTO(flight));
         }
         return flightsDTO;
     }
