@@ -4,6 +4,7 @@ public class NewTicketDTO {
     private Integer flightId;
     private Integer numberOfPeople;
     private String email;
+    private Integer id;
 
     public NewTicketDTO() {
     }
@@ -12,6 +13,14 @@ public class NewTicketDTO {
         this.flightId = flightId;
         this.numberOfPeople = numberOfPeople;
         this.email = email;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getFlightId() {

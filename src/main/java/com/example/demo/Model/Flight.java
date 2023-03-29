@@ -32,6 +32,12 @@ public class Flight {
     public Integer getTakenSeat( ){
         return maxSeats-freeSeats;
     }
+    public void takeUpSeats(Integer numberOfPeople){
+        freeSeats-=numberOfPeople;
+    }
+    public void freeUpSeats(Integer numberOfPeople){
+        freeSeats+=numberOfPeople;
+    }
 
     public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {
         this.id = _id;
