@@ -21,8 +21,6 @@ import java.util.Optional;
 public class FlightService {
     @Autowired
     private FlightRepository flightRepository;
-    @Autowired
-    private TicketRepository ticketRepository;
 
     public List<Flight> GetAll(){
         return flightRepository.findAll();
@@ -54,10 +52,5 @@ public class FlightService {
         }
         return flightsDTO;
     }
-    public Ticket CreateTicket(NewTicketDTO ticket){
-        Optional<Flight> flight=flightRepository.findById(ticket.getFlightId());
-        if(flight.isPresent())
-            return ticketRepository.save(new Ticket(1,flight.get(),null,1));
-        return null;
-    }
+
 }
