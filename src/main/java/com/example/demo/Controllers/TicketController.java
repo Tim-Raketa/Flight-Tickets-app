@@ -1,6 +1,7 @@
 package com.example.demo.Controllers;
 
 import com.example.demo.DTO.NewTicketDTO;
+import com.example.demo.DTO.TicketDTO;
 import com.example.demo.Model.Ticket;
 import com.example.demo.Service.SequenceGeneratorService;
 import com.example.demo.Service.TicketService;
@@ -27,7 +28,7 @@ public class TicketController {
     }
 
     @GetMapping(value = "/user")
-    public List<Ticket> getByUser() {
+    public List<TicketDTO> getByUser() {
         return ticketService.getByUser();
     }
 }
