@@ -8,13 +8,13 @@ public class TicketDTO {
     private Integer flightId;
     private Integer numberOfPeople;
     private Integer ticketId;
-    private LocalDateTime startDate;
+    private String startDate;
 
     public TicketDTO(Ticket ticket){
         this.flightId=ticket.getFlight().getId();
         this.ticketId=ticket.getId();
         this.numberOfPeople=ticket.getNumberOfSeats();
-        this.startDate=ticket.getFlight().getBegin();
+        this.startDate=ticket.getFlight().getBegin().toString();
     }
     public Integer getFlightId() {
         return flightId;
@@ -32,12 +32,12 @@ public class TicketDTO {
         this.numberOfPeople = numberOfPeople;
     }
 
-    public LocalDateTime getStartDate() {
+    public String getStartDate() {
         return startDate;
     }
 
     public void setStartDate(LocalDateTime startDate) {
-        this.startDate = startDate;
+        this.startDate = startDate.toString();
     }
 
     public Integer getTicketId() {
