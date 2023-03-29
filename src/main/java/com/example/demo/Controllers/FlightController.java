@@ -8,7 +8,9 @@ import com.example.demo.Model.Ticket;
 import com.example.demo.Service.FlightService;
 import com.example.demo.Service.SequenceGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,8 @@ public class FlightController {
     private SequenceGeneratorService sequenceGeneratorService;
 
     @GetMapping(value="/getAll")
-    public List<Flight> GetAll(){
-        return flightService.GetAll();
+    public ResponseEntity<List<Flight>> GetAll(){
+        return new ResponseEntity<List<Flight>>(flightService.GetAll(), HttpStatus.OK);
     }
     @PostMapping(value="/search",consumes = "application/json")
     public List<FlightDTO> search(@RequestBody FlightSearchDTO details){

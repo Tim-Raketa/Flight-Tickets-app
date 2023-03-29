@@ -29,7 +29,7 @@ public class Flight {
     public Float getTotalPrice(Integer numberOfPeople){
         return seatPrice*numberOfPeople;
     }
-    public Integer getTakenSeat( ){
+    public Integer TakenSeat( ){
         return maxSeats-freeSeats;
     }
     public void takeUpSeats(Integer numberOfPeople){
