@@ -32,10 +32,6 @@ public class FlightController {
         return flightService.Search(details);
     }
 
-    @PostMapping(value="/buy/ticket",consumes = "application/json")
-    public Ticket NewTicket(@RequestBody NewTicketDTO ticket) {
-        return flightService.CreateTicket(ticket);
-    }
     @PostMapping("/addFlight")
     public String createFlight(@RequestBody Flight newFlight){
         newFlight.setId(sequenceGeneratorService.getSequenceNumber(SEQUENCE_NAME));
