@@ -5,8 +5,9 @@ import com.example.demo.Model.User;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface TicketRepository extends MongoRepository<Ticket, Integer> {
-    List<Ticket> findAllByUser(User user);
+    Optional<List<Ticket>> findAllByUser(User user);
 
 }

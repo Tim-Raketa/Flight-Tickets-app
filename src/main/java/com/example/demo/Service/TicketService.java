@@ -30,6 +30,10 @@ public class TicketService {
         flightRepository.save(flight.get());
         return ticketRepository.save(new Ticket(ticket.getId(), flight.get(), user, ticket.getNumberOfPeople()));
     }
-   
+    public List<Ticket> getByUser(){
+        User user = new User("moc", "123","Bo", "Moc", "1231231231233");
+        if(!ticketRepository.findAllByUser(user).isPresent()) return null;
+        return ticketRepository.findAllByUser(user).get();
+    }
 
 }
