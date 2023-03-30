@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,6 +40,10 @@ public class UserService {
 
         // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
         newUser.setRole("ROLE_USER");
+        Role role = new Role(1, "ROLE_USER");
+        List<Role> roles = new ArrayList<Role>();
+        roles.add(role);
+        newUser.setRoles(roles);
 
         return userRepository.save(newUser);
     }

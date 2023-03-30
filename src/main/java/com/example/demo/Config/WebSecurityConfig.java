@@ -85,7 +85,8 @@ public class WebSecurityConfig {
         http.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and().
                 authorizeRequests()
                 .requestMatchers("/auth/login").permitAll()// /auth/**
-                .requestMatchers("/users/**").permitAll()
+                .requestMatchers("/users/getAll").permitAll()
+                .requestMatchers("/users/register").hasAuthority("ROLE_USER")
                 // ukoliko ne zelimo da koristimo @PreAuthorize anotacije nad metodama kontrolera, moze se iskoristiti hasRole() metoda da se ogranici
                 // koji tip korisnika moze da pristupi odgovarajucoj ruti. Npr. ukoliko zelimo da definisemo da ruti 'admin' moze da pristupi
                 // samo korisnik koji ima rolu 'ADMIN', navodimo na sledeci nacin:
@@ -109,19 +110,19 @@ public class WebSecurityConfig {
         return http.build();
     }
 
-    // metoda u kojoj se definisu putanje za igorisanje autentifikacije
-    //@Bean
-    //public WebSecurityCustomizer webSecurityCustomizer() {
-        // Autentifikacija ce biti ignorisana ispod navedenih putanja (kako bismo ubrzali pristup resursima)
-        // Zahtevi koji se mecuju za web.ignoring().antMatchers() nemaju pristup SecurityContext-u
-        // Dozvoljena POST metoda na ruti /auth/login, za svaki drugi tip HTTP metode greska je 401 Unauthorized
-     //   return (web) -> web.ignoring().requestMatchers(HttpMethod.POST, "/auth/login")
-
-
-              // Ovim smo dozvolili pristup statickim resursima aplikacije
-      //          .requestMatchers(HttpMethod.GET, "/", "/users/getAll", "/webjars/**", "/*.html", "favicon.ico",
-       //                 "/**/*.html", "/**/*.css", "/**/*.js");
-
-    //}
+    //metoda u kojoj se definisu putanje za igorisanje autentifikacije
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//         //Autentifikacija ce biti ignorisana ispod navedenih putanja (kako bismo ubrzali pristup resursima)
+//         //Zahtevi koji se mecuju za web.ignoring().antMatchers() nemaju pristup SecurityContext-u
+//        // Dozvoljena POST metoda na ruti /auth/login, za svaki drugi tip HTTP metode greska je 401 Unauthorized
+//        return (web) -> web.ignoring().requestMatchers(HttpMethod.POST, "/auth/login")
+//
+//
+//              // Ovim smo dozvolili pristup statickim resursima aplikacije
+//                .requestMatchers(HttpMethod.GET, "/", "/users/getAll", "/webjars/**", "/*.html", "favicon.ico",
+//                        "/**/*.html", "/**/*.css", "/**/*.js");
+//
+//    }
 
 }

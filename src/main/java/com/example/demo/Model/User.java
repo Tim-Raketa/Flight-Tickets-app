@@ -2,6 +2,7 @@ package com.example.demo.Model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -19,6 +20,8 @@ public class User implements UserDetails {
     private String name;
     private String surname;
     private String jmbg;
+    
+    private List<Role> roles;
     private String role;
 
     public User() { }
@@ -37,7 +40,7 @@ public class User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles;
     }
 
     public String getPassword() {
@@ -97,15 +100,23 @@ public class User implements UserDetails {
         this.jmbg = jmbg;
     }
 
+    public Date getLastPasswordResetDate() {
+        return null;
+    }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
     public String getRole() {
         return role;
     }
 
     public void setRole(String role) {
         this.role = role;
-    }
-
-    public Date getLastPasswordResetDate() {
-        return null;
     }
 }
