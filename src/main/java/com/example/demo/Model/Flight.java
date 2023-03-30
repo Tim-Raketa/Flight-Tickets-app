@@ -2,6 +2,7 @@ package com.example.demo.Model;
 
 import com.example.demo.DTO.FlightDTO;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -11,6 +12,10 @@ import java.util.List;
 
 @Document("flights")
 public class Flight {
+
+    @Transient
+    public static final String SEQUENCE_NAME = "flight_sequence";
+
     @Id
     private Integer id;
     private LocalDateTime begin;
@@ -18,15 +23,20 @@ public class Flight {
     private String startingPlace;
     private String destination;
     private Integer maxSeats;
-    //promeni u free
     private Integer freeSeats;
     private Float seatPrice;
 
     public Float getTotalPrice(Integer numberOfPeople){
         return seatPrice*numberOfPeople;
     }
-    public Integer getTakenSeat( ){
+    public Integer TakenSeat( ){
         return maxSeats-freeSeats;
+    }
+    public void takeUpSeats(Integer numberOfPeople){
+        freeSeats-=numberOfPeople;
+    }
+    public void freeUpSeats(Integer numberOfPeople){
+        freeSeats+=numberOfPeople;
     }
 
     public Flight(Integer _id, LocalDateTime  Begin, LocalDateTime  end, String startingPlace, String destination, Integer maxSeats, float seatPrice) {

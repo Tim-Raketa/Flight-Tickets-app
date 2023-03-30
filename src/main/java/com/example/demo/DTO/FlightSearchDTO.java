@@ -1,31 +1,26 @@
 package com.example.demo.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class FlightSearchDTO {
-    private LocalDate date;
+    private String date;
     private String startingLocation;
     private String destination;
     private Integer numberOfPeople;
 
-    public FlightSearchDTO() {
-    }
-
-    public FlightSearchDTO(LocalDate Date, String startingLocation, String destination, Integer numberOfPeople) {
-        this.date = Date;
-        this.startingLocation = startingLocation;
-        this.destination = destination;
-        this.numberOfPeople = numberOfPeople;
-    }
-
     public LocalDate getDate() {
-        return date;
+        return LocalDate.parse(date);
     }
 
     public void setDate(LocalDate date) {
-        this.date = date;
+        this.date = date.toString();
     }
 
     public String getStartingLocation() {
