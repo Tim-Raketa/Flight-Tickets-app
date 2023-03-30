@@ -86,7 +86,8 @@ public class WebSecurityConfig {
                 authorizeRequests()
                 .requestMatchers("/auth/login").permitAll()// /auth/**
                 .requestMatchers("/users/getAll").permitAll()
-                .requestMatchers("/users/register").hasAuthority("ROLE_USER")
+                .requestMatchers("/users/registerAdmin").permitAll()
+                .requestMatchers("/users/register").permitAll()
                 // ukoliko ne zelimo da koristimo @PreAuthorize anotacije nad metodama kontrolera, moze se iskoristiti hasRole() metoda da se ogranici
                 // koji tip korisnika moze da pristupi odgovarajucoj ruti. Npr. ukoliko zelimo da definisemo da ruti 'admin' moze da pristupi
                 // samo korisnik koji ima rolu 'ADMIN', navodimo na sledeci nacin:

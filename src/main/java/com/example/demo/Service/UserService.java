@@ -48,6 +48,25 @@ public class UserService {
         return userRepository.save(newUser);
     }
 
+    public User registerAdmin(UserRequest userRequest){
+        User newUser = new User();
+
+        newUser.setEmail(userRequest.getEmail());
+        newUser.setUsername(userRequest.getEmail());
+        newUser.setPassword(passwordEncoder.encode(userRequest.getPassword()));
+        newUser.setName(userRequest.getName());
+        newUser.setSurname(userRequest.getSurname());
+
+        // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
+        newUser.setRole("ROLE_USER");
+        Role role = new Role(2, "ROLE_ADMIN");
+        List<Role> roles = new ArrayList<Role>();
+        roles.add(role);
+        newUser.setRoles(roles);
+
+        return userRepository.save(newUser);
+    }
+
     public Optional<User> getUserByEmail(String email) {
         return userRepository.findById(email);
     }

@@ -26,6 +26,9 @@ public class User implements UserDetails {
 
     public User() { }
 
+    public User(String moc, String s, String bo, String moc1, String s1) {
+    }
+
     public String getEmail() {
         return email;
     }
