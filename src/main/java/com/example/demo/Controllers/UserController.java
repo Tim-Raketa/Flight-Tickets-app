@@ -37,11 +37,23 @@ public class UserController {
         return created;
     }
 
+    //koristi se za kreiranje rola da bismo mogli koristiti autorizaciju
     @PostMapping("/createRole")
     public Boolean createRole(@RequestBody Role role) throws Exception {
         roleRepository.save(role);
-
         return true;
+    }
+
+    @PostMapping("/registerAdmin")
+    public Boolean registerAdmin(@RequestBody UserRequest newUser) throws Exception {
+        Boolean created = false;
+        String tempEmail = newUser.getEmail();
+        Optional<User> user = userService.getUserByEmail(tempEmail);
+        if (user.isEmpty()) {
+            userService.registerAdmin(newUser);
+            created = true;
+        }
+        return created;
     }
 
 
