@@ -43,9 +43,14 @@ public class FlightController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteFlight(@PathVariable Integer id){
-        flightService.deleteFlight(id);
-        return "Flight deleted ";
+    public ResponseEntity<Void> deleteFlight(@PathVariable Integer id){
+        Flight flight = flightService.findById(id).orElse(null);
+        if(flight == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        } else{
+            flightService.deleteFlight(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
     }
 
 }
