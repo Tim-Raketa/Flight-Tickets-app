@@ -22,16 +22,17 @@ public class TicketService {
     private TicketRepository ticketRepository;
     @Autowired
     private FlightRepository flightRepository;
-    public Ticket CreateTicket(NewTicketDTO ticket, HttpServletRequest request){
+    public Boolean CreateTicket(NewTicketDTO ticket, HttpServletRequest request){
         Optional<Flight> flight=flightRepository.findById(ticket.getFlightId());
 
-        if(!flight.isPresent() || (flight.get().getFreeSeats()<ticket.getNumberOfPeople())) return null;
+        if(!flight.isPresent() || (flight.get().getFreeSeats()<ticket.getNumberOfPeople())) return false;
 
         User user = userService.getLoggedInUser(request);
         flight.get().takeUpSeats(ticket.getNumberOfPeople());
 
         flightRepository.save(flight.get());
-        return ticketRepository.save(new Ticket(ticket.getId(), flight.get(), user, ticket.getNumberOfPeople()));
+        ticketRepository.save(new Ticket(ticket.getId(), flight.get(), user, ticket.getNumberOfPeople()));
+        return true;
     }
     public List<TicketDTO> getByUser(HttpServletRequest request){
         User user = userService.getLoggedInUser(request);

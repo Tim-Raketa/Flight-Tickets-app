@@ -23,7 +23,7 @@ public class TicketController {
     private SequenceGeneratorService sequenceGeneratorService;
 
     @PostMapping(value = "/buy/ticket", consumes = "application/json")
-    public Ticket NewTicket(@RequestBody NewTicketDTO ticket, HttpServletRequest request) {
+    public Boolean NewTicket(@RequestBody NewTicketDTO ticket, HttpServletRequest request) {
         ticket.setId(sequenceGeneratorService.getSequenceNumber(SEQUENCE_NAME));
         return ticketService.CreateTicket(ticket,request);
     }
