@@ -58,7 +58,7 @@ public class UserService {
         newUser.setSurname(userRequest.getSurname());
 
         // u primeru se registruju samo obicni korisnici i u skladu sa tim im se i dodeljuje samo rola USER
-        newUser.setRole("ROLE_USER");
+        newUser.setRole("ROLE_ADMIN");
         Role role = new Role(2, "ROLE_ADMIN");
         List<Role> roles = new ArrayList<Role>();
         roles.add(role);
