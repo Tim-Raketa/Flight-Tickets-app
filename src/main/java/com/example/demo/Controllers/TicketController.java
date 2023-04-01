@@ -5,6 +5,7 @@ import com.example.demo.DTO.TicketDTO;
 import com.example.demo.Model.Ticket;
 import com.example.demo.Service.SequenceGeneratorService;
 import com.example.demo.Service.TicketService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,13 @@ public class TicketController {
     private SequenceGeneratorService sequenceGeneratorService;
 
     @PostMapping(value = "/buy/ticket", consumes = "application/json")
-    public Ticket NewTicket(@RequestBody NewTicketDTO ticket) {
+    public Ticket NewTicket(@RequestBody NewTicketDTO ticket, HttpServletRequest request) {
         ticket.setId(sequenceGeneratorService.getSequenceNumber(SEQUENCE_NAME));
-        return ticketService.CreateTicket(ticket);
+        return ticketService.CreateTicket(ticket,request);
     }
 
     @GetMapping(value = "/user")
-    public List<TicketDTO> getByUser() {
-        return ticketService.getByUser();
+    public List<TicketDTO> getByUser(HttpServletRequest request) {
+        return ticketService.getByUser(request);
     }
 }
