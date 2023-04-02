@@ -36,10 +36,10 @@ public class FlightController {
     }
 
     @PostMapping("/addFlight")
-    public String createFlight(@RequestBody Flight newFlight){
+    public ResponseEntity<Void> createFlight(@RequestBody Flight newFlight){
         newFlight.setId(sequenceGeneratorService.getSequenceNumber(SEQUENCE_NAME));
         flightService.createFlight(newFlight);
-        return "Added flight with id: " + newFlight.getId();
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
