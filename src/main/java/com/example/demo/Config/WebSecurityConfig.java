@@ -88,8 +88,9 @@ public class WebSecurityConfig {
                 .requestMatchers("/users/getAll").hasAuthority("ROLE_USER")
                 .requestMatchers("/users/registerAdmin").permitAll()
                 .requestMatchers("/users/register").permitAll()
-                .requestMatchers("/Flights/*").permitAll()
-                .requestMatchers("/Flights/delete/{id}").permitAll()
+                .requestMatchers("/Flights/getAll").permitAll()
+                .requestMatchers("/Flights/addFlight").hasAuthority("ROLE_ADMIN")
+                .requestMatchers("/Flights/delete/{id}").hasAuthority("ROLE_ADMIN")
                 // ukoliko ne zelimo da koristimo @PreAuthorize anotacije nad metodama kontrolera, moze se iskoristiti hasRole() metoda da se ogranici
                 // koji tip korisnika moze da pristupi odgovarajucoj ruti. Npr. ukoliko zelimo da definisemo da ruti 'admin' moze da pristupi
                 // samo korisnik koji ima rolu 'ADMIN', navodimo na sledeci nacin:
