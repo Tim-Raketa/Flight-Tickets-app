@@ -7,6 +7,7 @@ import com.example.demo.Model.Ticket;
 import com.example.demo.Model.User;
 import com.example.demo.Repository.FlightRepository;
 import com.example.demo.Repository.TicketRepository;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,19 +17,25 @@ import java.util.Optional;
 @Service
 public class TicketService {
     @Autowired
+    private UserService userService;
+    @Autowired
     private TicketRepository ticketRepository;
     @Autowired
     private FlightRepository flightRepository;
-    public Ticket CreateTicket(NewTicketDTO ticket){
+    public Boolean CreateTicket(NewTicketDTO ticket, HttpServletRequest request){
         Optional<Flight> flight=flightRepository.findById(ticket.getFlightId());
-        if(!flight.isPresent() || (flight.get().getFreeSeats()<ticket.getNumberOfPeople())) return null;
-        User user = new User("moc", "123","Bo", "Moc", "1231231231233");
+
+        if(!flight.isPresent() || (flight.get().getFreeSeats()<ticket.getNumberOfPeople())) return false;
+
+        User user = userService.getLoggedInUser(request);
         flight.get().takeUpSeats(ticket.getNumberOfPeople());
+
         flightRepository.save(flight.get());
-        return ticketRepository.save(new Ticket(ticket.getId(), flight.get(), user, ticket.getNumberOfPeople()));
+        ticketRepository.save(new Ticket(ticket.getId(), flight.get(), user, ticket.getNumberOfPeople()));
+        return true;
     }
-    public List<TicketDTO> getByUser(){
-        User user = new User("moc", "123","Bo", "Moc", "1231231231233");
+    public List<TicketDTO> getByUser(HttpServletRequest request){
+        User user = userService.getLoggedInUser(request);
         if(!ticketRepository.findAllByUser(user).isPresent()) return null;
         return TicketToDTO(ticketRepository.findAllByUser(user).get());
     }
