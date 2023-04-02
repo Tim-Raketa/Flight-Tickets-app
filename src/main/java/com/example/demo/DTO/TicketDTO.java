@@ -1,9 +1,13 @@
 package com.example.demo.DTO;
 
 import com.example.demo.Model.Ticket;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+@AllArgsConstructor
+@NoArgsConstructor
 public class TicketDTO {
     private Integer flightId;
     private Integer numberOfPeople;
@@ -11,6 +15,7 @@ public class TicketDTO {
     private String startDate;
     private String StartingLocation;
     private String Destination;
+
 
     public TicketDTO(Ticket ticket){
         this.flightId=ticket.getFlight().getId();
@@ -50,5 +55,20 @@ public class TicketDTO {
 
     public void setTicketId(Integer ticketId) {
         this.ticketId = ticketId;
+    }
+    public String getStartingLocation() {
+        return StartingLocation;
+    }
+
+    public void setStartingLocation(String startingLocation) {
+        StartingLocation = startingLocation;
+    }
+
+    public String getDestination() {
+        return Destination;
+    }
+
+    public void setDestination(String destination) {
+        Destination = destination;
     }
 }
