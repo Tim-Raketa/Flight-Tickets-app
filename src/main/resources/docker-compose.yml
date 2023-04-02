@@ -4,7 +4,7 @@ services:
     image: mongo:latest
     container_name: "Flight_test"
     ports:
-      - 27017:27017
+      - 8001:27017
     volumes:
       - ./mongo_store:/data/db
   spingboot-mongodb:
