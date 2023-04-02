@@ -89,6 +89,7 @@ public class WebSecurityConfig {
                 .requestMatchers("/users/registerAdmin").permitAll()
                 .requestMatchers("/users/register").permitAll()
                 .requestMatchers("/Flights/getAll").permitAll()
+                .requestMatchers("/Flights/search").permitAll()
                 .requestMatchers("/Flights/addFlight").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/Flights/delete/{id}").hasAuthority("ROLE_ADMIN")
                 // ukoliko ne zelimo da koristimo @PreAuthorize anotacije nad metodama kontrolera, moze se iskoristiti hasRole() metoda da se ogranici
