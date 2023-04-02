@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public interface FlightRepository extends MongoRepository<Flight, Integer> {
-    List<Flight> findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndFreeSeatsLessThan
+    List<Flight> findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndFreeSeatsGreaterThan
             (LocalDateTime date1,LocalDateTime date2,String dest, String start, Integer seats);
 
     Optional<Flight> findById(Integer id);

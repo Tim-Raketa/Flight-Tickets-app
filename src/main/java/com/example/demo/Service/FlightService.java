@@ -42,7 +42,7 @@ public class FlightService {
     public List<FlightDTO> Search(FlightSearchDTO details){
         LocalDateTime dateTime = details.getDate().atStartOfDay();
 
-       List<Flight>flights= flightRepository.findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndFreeSeatsLessThan
+       List<Flight>flights= flightRepository.findByBeginIsBetweenAndDestinationIsContainingIgnoreCaseAndStartingPlaceIsContainingIgnoreCaseAndFreeSeatsGreaterThan
                 (dateTime,dateTime.plusDays(1),details.getDestination(),details.getStartingLocation(),details.getNumberOfPeople() );
         return flightToDTO(flights,details.getNumberOfPeople());
     }

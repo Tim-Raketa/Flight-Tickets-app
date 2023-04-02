@@ -85,7 +85,7 @@ public class WebSecurityConfig {
         http.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and().
                 authorizeRequests()
                 .requestMatchers("/auth/login").permitAll()// /auth/**
-                .requestMatchers("/users/getAll").permitAll()
+                .requestMatchers("/users/getAll").hasAuthority("ROLE_USER")
                 .requestMatchers("/users/registerAdmin").permitAll()
                 .requestMatchers("/users/register").permitAll()
                 .requestMatchers("/Flights/*").permitAll()

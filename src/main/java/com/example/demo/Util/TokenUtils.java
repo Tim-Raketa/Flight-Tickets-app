@@ -67,6 +67,10 @@ public class TokenUtils {
         // moguce je postavljanje proizvoljnih podataka u telo JWT tokena pozivom funkcije .claim("key", value), npr. .claim("role", user.getRole())
     }
 
+    public String getEmailDirectlyFromHeader(HttpServletRequest request) {
+        return this.getUsernameFromToken(this.getToken(request));
+    }
+
     /**
      * Funkcija za utvrđivanje tipa uređaja za koji se JWT kreira.
      * @return Tip uređaja.
