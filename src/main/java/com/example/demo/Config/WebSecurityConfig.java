@@ -84,15 +84,16 @@ public class WebSecurityConfig {
         // sve neautentifikovane zahteve obradi uniformno i posalji 401 gresku
         http.exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and().
                 authorizeRequests()
-                .requestMatchers("/auth/login").permitAll()// /auth/**
-                .requestMatchers("/users/getAll").hasAuthority("ROLE_USER")
-                .requestMatchers("/users/registerAdmin").permitAll()
-                .requestMatchers("/users/register").permitAll()
+               // .requestMatchers("/auth/login").permitAll()// /auth/**
+               // .requestMatchers("/users/getAll").hasAuthority("ROLE_USER")
+               // .requestMatchers("/users/registerAdmin").permitAll()
+               // .requestMatchers("/users/register").permitAll()
+                .requestMatchers("/users/**").permitAll()
                 .requestMatchers("/Flights/getAll").permitAll()
                 .requestMatchers("/Flights/search").permitAll()
                 .requestMatchers("/Flights/addFlight").hasAuthority("ROLE_ADMIN")
                 .requestMatchers("/Flights/delete/{id}").hasAuthority("ROLE_ADMIN")
-                .requestMatchers("/Tickets/*").hasAuthority("ROLE_USER")
+                .requestMatchers("/Tickets/**").permitAll()
 
                 // ukoliko ne zelimo da koristimo @PreAuthorize anotacije nad metodama kontrolera, moze se iskoristiti hasRole() metoda da se ogranici
                 // koji tip korisnika moze da pristupi odgovarajucoj ruti. Npr. ukoliko zelimo da definisemo da ruti 'admin' moze da pristupi

@@ -27,6 +27,11 @@ public class TicketController {
         ticket.setId(sequenceGeneratorService.getSequenceNumber(SEQUENCE_NAME));
         return ticketService.CreateTicket(ticket,request);
     }
+    @PostMapping(value = "/buy/ticket/unprotected", consumes = "application/json")
+    public Boolean NewTickets(@RequestBody NewTicketDTO ticket) {
+        ticket.setId(sequenceGeneratorService.getSequenceNumber(SEQUENCE_NAME));
+        return ticketService.CreateTicket(ticket);
+    }
 
     @GetMapping(value = "/user")
     public List<TicketDTO> getByUser(HttpServletRequest request) {

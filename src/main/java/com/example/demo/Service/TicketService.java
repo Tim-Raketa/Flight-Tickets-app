@@ -48,4 +48,17 @@ public class TicketService {
         }
         return ticketDTOS;
     }
+
+    public Boolean CreateTicket(NewTicketDTO ticket) {
+        Optional<Flight> flight=flightRepository.findById(ticket.getFlightId());
+
+        if(!flight.isPresent() || (flight.get().getFreeSeats()<ticket.getNumberOfPeople())) return false;
+
+        User user = userService.getUserByEmail(ticket.getEmail()).get();
+        flight.get().takeUpSeats(ticket.getNumberOfPeople());
+
+        flightRepository.save(flight.get());
+        ticketRepository.save(new Ticket(ticket.getId(), flight.get(), user, ticket.getNumberOfPeople()));
+        return true;
+    }
 }

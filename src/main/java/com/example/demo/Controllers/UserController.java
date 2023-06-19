@@ -55,7 +55,13 @@ public class UserController {
         }
         return created;
     }
-
-
+    @GetMapping("/exists/{username}")
+    public Boolean userExists(@PathVariable String username)
+    {
+        Optional<User> exists=userService.getAllUsers().stream().filter(user -> username.equals(user.getUsername())).findAny();
+        if(exists.isPresent())
+        return true;
+        else return false;
+    }
 
 }
